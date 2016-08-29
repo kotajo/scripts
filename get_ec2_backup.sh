@@ -16,7 +16,7 @@ LOGFILE=/tmp/get_ec2_backup_${YYYYMMDD}.log
 ##########引数の数をチェック##########
 if [ $# -gt 1 ];then
     #引数の数が1より大きい場合、エラーメッセージを標準出力とログに出力し、処理終了
-    echo "引数の数が不正です。" | tee ${LOGFILE}
+    echo "ERROR : 引数の数が不正です。" | tee ${LOGFILE}
     exit 1
 fi
 
@@ -34,7 +34,7 @@ elif [ ${ARG} = "--no-reboot" ];then
 
 else
     #それ以外の場合、エラーメッセージを標準出力とログに出力し、処理終了
-    echo "オプションは --reboot または --no-reboot のどちらかを指定してください。" | tee ${LOGFILE}
+    echo "ERROR : オプションは --reboot または --no-reboot のどちらかを指定してください。" | tee ${LOGFILE}
     exit 1
 fi
 
