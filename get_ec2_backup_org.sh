@@ -52,14 +52,15 @@ fi
 log "START get-instance-ids"
 
 #AutoBackupタグがtrueになっているインスタンスのidのリストを取得
-incetance_id=`aws ec2 describe-tags --filters "Name=tag:AutoBackup, Values=true" | grep "ResourceId" | awk -F'"' '{print $4}'`
+aws ec2 describe-tags --filters "Name=tag:AutoBackup, Values=true" | grep "ResourceId" | awk -F'"' '{print $4}' > ${EC2_IDLIST}
+
+##########エラーチェック用##########
+#EC2_IDLIST=/tmp/err-check_ec2backup_idlist
 
 while read id
 do
     log ${id}
-done <<END
-${incetance_id}
-END
+done < ${EC2_IDLIST}
 
 log "END"
 
@@ -109,6 +110,4 @@ do
 
     log "END"
 
-done <<END
-${incetance_id}
-END
+done < ${EC2_IDLIST}
