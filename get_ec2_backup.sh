@@ -38,7 +38,7 @@ if [ -z ${ARG} ] || [ ${ARG} = "--no-reboot" ];then
 
 #引数が --rebootの場合
 elif [ ${ARG} = "--reboot" ];then
-    CMD_OPT="--no-reboot"
+    CMD_OPT="--reboot"
 
 else
     #それ以外の場合、エラーメッセージを標準出力とログに出力し、処理終了
