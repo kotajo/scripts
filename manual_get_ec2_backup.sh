@@ -78,8 +78,10 @@ instance_id=`aws ec2 describe-tags \
                 --query="Tags[].[ResourceId]" \
                 --output=text`
 
+#対象ホスト名のインスタンスIDが存在しない場合はエラーメッセージを標準出力とログに出力し、処理終了
 if [ "${instance_id}" = "" ];then
     log_stdout "ERROR 指定されたインスタンスは存在しません。 (${instance_name})"
+    exit 1
 fi
 
 
