@@ -53,7 +53,7 @@ fi
     #########deregister-image##########
     log "START deregister-image ${line}"
 
-    ##aws ec2 deregister-image --image-id ${line}
+    aws ec2 deregister-image --image-id ${line}
 
         #戻り値判定
         if [ $? -ne 0 ];then
@@ -64,7 +64,7 @@ fi
     ##########delete-snapshot##########
     log "START delete-snapshot ${snapshot_id} (${line})"
 
-    ##aws ec2 delete-snapshot --snapshot-id ${snapshot_id}
+    aws ec2 delete-snapshot --snapshot-id ${snapshot_id}
 
         #戻り値判定
         if [ $? -ne 0 ];then
