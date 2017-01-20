@@ -108,7 +108,12 @@ log_stdout "START create-image from ${instance_id} (${instance_name})"
         log_stdout "START create-tags ${ami_id}"
 
         #取得したAMIにタグを付与
-        tag_ret=`aws ec2 create-tags --resources ${ami_id} --tags Key=BackupType,Value=Auto Key=CreateDate,Value=${YYYYMMDD} 2>&1`
+        tag_ret=`aws ec2 create-tags \
+            --resources ${ami_id} \
+            --tags \
+            Key=BackupType,Value=Auto \
+            Key=CreateDate,Value=${YYYYMMDD} \
+            Key=InstanceName,Value=${instance_name} 2>&1`
 
         #戻り値判定
         if [ $? -ne 0 ];then
