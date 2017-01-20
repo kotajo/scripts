@@ -8,18 +8,12 @@
 #
 ###############################################
 
-#OLD_YYYYMMDD=`date '+%Y%m%d' --date "14 days ago"`
-OLD_YYYYMMDD=`date '+%Y%m%d'`
+OLD_YYYYMMDD=`date '+%Y%m%d' --date "14 days ago"`
 LOGFILE="/tmp/delete_ec2_backup.log"
 
-#ログ用関数（ファイル出力のみ)
+#ログ用関数
 function log() {
   echo "`date "+%Y/%m/%d %H:%M:%S"` $1" >> ${LOGFILE}
-}
-
-#ログ用関数（標準出力 + ファイル出力)
-function log_stdout() {
-  echo "`date "+%Y/%m/%d %H:%M:%S"` $1" | tee -a ${LOGFILE}
 }
 
 ##########引数の数をチェック##########
@@ -36,13 +30,19 @@ log "START rotate-AMIs-Snamshots"
 ami_id=`aws ec2 describe-images \
             --filter \
             "Name=tag:BackupType, Values=Auto" \
-            "Name=tag:CreateDate, Values=20170119" \
+            "Name=tag:CreateDate, Values=${OLD_YYYYMMDD}" \
             --query="Images[].[ImageId]" \
             --output=text |\
             sed -e 's/ /\n/g' 2>&1`
 
 while read line
 do
+
+if [ "$line" = "" ];then
+    log "OLD AMI is nothing."
+    log "END"
+    exit 0
+fi
 
     ##########get-SnapshotsId##########
     snapshot_id=`aws ec2 describe-images \
@@ -53,7 +53,7 @@ do
     #########deregister-image##########
     log "START deregister-image ${line}"
 
-    aws ec2 deregister-image --image-id ${line}
+    ##aws ec2 deregister-image --image-id ${line}
 
         #戻り値判定
         if [ $? -ne 0 ];then
@@ -64,7 +64,7 @@ do
     ##########delete-snapshot##########
     log "START delete-snapshot ${snapshot_id} (${line})"
 
-    aws ec2 delete-snapshot --snapshot-id ${snapshot_id}
+    ##aws ec2 delete-snapshot --snapshot-id ${snapshot_id}
 
         #戻り値判定
         if [ $? -ne 0 ];then
