@@ -10,7 +10,7 @@
 
 OLD_YYYYMMDD=`date '+%Y%m%d' --date "14 days ago"`
 LOGFILE="/tmp/delete_ec2_backup.log"
-EC2_LIST="/tmp/AutoBackup_ec2.list"
+EC2_LIST="/etc/AutoBackup_ec2.list"
 
 #ログ用関数
 function log() {
