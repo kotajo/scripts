@@ -8,6 +8,7 @@
 #
 ###############################################
 
+DATE=`date '+%Y%m%d'`
 OLD_YYYYMMDD=`date '+%Y%m%d' --date "14 days ago"`
 LOGFILE="/tmp/delete_ec2_backup.log"
 EC2_LIST="/etc/AutoBackup_ec2.list"
@@ -31,7 +32,7 @@ do
 check_id=`aws ec2 describe-images \
             --filter \
             "Name=tag:BackupType, Values=Auto" \
-            "Name=tag:CreateDate, Values=20170120" \
+            "Name=tag:CreateDate, Values=${DATE}" \
             "Name=tag:InstanceName, Values=${line}" \
             --query="Images[].ImageId" \
             --output=text`
