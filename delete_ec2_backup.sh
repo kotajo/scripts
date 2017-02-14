@@ -11,7 +11,7 @@
 DATE=`date '+%Y%m%d'`
 OLD_YYYYMMDD=`date '+%Y%m%d' --date "14 days ago"`
 LOGFILE="/tmp/delete_ec2_backup.log"
-EC2_LIST="/etc/AutoBackup_ec2.list"
+EC2_LIST="/usr/local/share/scripts/etc/AutoBackup_ec2.list"
 
 #ログ用関数
 function log() {
@@ -48,7 +48,7 @@ done < ${EC2_LIST}
 #AMIがとれていないインスタンスがある場合、エラーメッセージをslackに通知し、処理終了
 if [ "${err_message}" != "" ];then
     echo ${err_message} |\
-        /usr/local/share/test/slack_post.sh \
+        /usr/local/share/scripts/slack_post.sh \
             -m "【要対応】EC2の週次バックアップが失敗しました"
     exit 0
 fi
