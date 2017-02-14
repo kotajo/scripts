@@ -56,7 +56,7 @@ fi
 ##########rotate-AMIs-Snamshots##########
 log "START rotate-AMIs-Snapshots"
 
-#BackupTypeタグがAuto、かつ、CreateDateタグが2週刊前のamiの情報を取得
+#BackupTypeタグがAuto、かつ、CreateDateタグが2週間前のamiの情報を取得
 ami_id=`aws ec2 describe-images \
             --filter \
             "Name=tag:BackupType, Values=Auto" \
