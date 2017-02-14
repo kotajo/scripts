@@ -1,7 +1,7 @@
 #! /bin/bash
 
 set -eu
-CHANNEL="post-from-mgt01a-test" # DONOT USE '#'
+CHANNEL="post_from_mgt_sv" # DONOT USE '#'
 USERNAME="slack_post_shell"
 MESSAGE="TEST"
 HOOKS_URL="https://hooks.slack.com/services/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"
