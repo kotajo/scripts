@@ -9,7 +9,7 @@
 ###############################################
 
 YYYYMMDD=`date '+%Y%m%d'`
-LOGFILE="/tmp/get_ec2_backup.log"
+LOGFILE="/var/log/scripts/get_ec2_backup.log"
 
 #ログ用関数（ファイル出力のみ)
 function log() {

@@ -9,7 +9,7 @@
 ###############################################
 
 YYYYMMDD=`date '+%Y%m%d'`
-LOGFILE="/tmp/manual_get_ec2_backup.log"
+LOGFILE="/var/log/scripts/manual_get_ec2_backup.log"
 #arg="$@"
 
 #ログ用関数（標準出力 + ファイル出力)

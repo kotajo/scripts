@@ -9,8 +9,8 @@
 ###############################################
 
 DATE=`date '+%Y%m%d%H%M%S'`
-LOGFILE="/tmp/get_db_backup.log"
-DIR="/tmp/dbdump"
+LOGFILE="/var/log/scripts/get_db_backup.log"
+DIR="/usr/local/share/dbdump"
 DBPASS=""
 
 #ログ用関数（ファイル出力のみ)

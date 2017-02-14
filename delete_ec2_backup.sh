@@ -10,7 +10,7 @@
 
 DATE=`date '+%Y%m%d'`
 OLD_YYYYMMDD=`date '+%Y%m%d' --date "14 days ago"`
-LOGFILE="/tmp/delete_ec2_backup.log"
+LOGFILE="/var/log/scripts/delete_ec2_backup.log"
 EC2_LIST="/usr/local/share/scripts/etc/AutoBackup_ec2.list"
 
 #ログ用関数
@@ -54,7 +54,7 @@ if [ "${err_message}" != "" ];then
 fi
 
 ##########rotate-AMIs-Snamshots##########
-log "START rotate-AMIs-Snamshots"
+log "START rotate-AMIs-Snapshots"
 
 #BackupTypeタグがAuto、かつ、CreateDateタグが2週刊前のamiの情報を取得
 ami_id=`aws ec2 describe-images \
