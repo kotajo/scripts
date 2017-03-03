@@ -22,7 +22,7 @@ openssl x509 -in ${REPOS}/${CLNT}/${CLNT}-client.pem -out ${REPOS}/${CLNT}/${CLN
 openssl ca -config /etc/pki/tls/openssl.cnf -gencrl -out ${CA_ROOT}/ca.crl -keyfile ${CA_ROOT}/private/cakey.pem -cert ${CA_ROOT}/cacert.pem -verbose -crldays 3650
 
 # p12 (webブラウザ用。秘密鍵と公開鍵(証明書)を PKCS #12ファイルにまとめる)
-openssl pkcs12 -export -in ${REPOS}/${CLNT}/${CLNT}-client.crt -inkey ${REPOS}/${CLNT}/${CLNT}-client.key -out ${REPOS}/${CLNT}/${CLNT}-client.p12 -certfile ${CA_ROOT}/cacert.pem -name 'demoCA Client Cert' -caname 'demoCA'
+openssl pkcs12 -export -in ${REPOS}/${CLNT}/${CLNT}-client.crt -inkey ${REPOS}/${CLNT}/${CLNT}-client.key -out ${REPOS}/${CLNT}/${CLNT}-client.p12 -certfile ${CA_ROOT}/cacert.pem -name 'ingateCA Client Cert' -caname 'ingateCA'
 
 #p12.txt (p12のパスワードをtxtに保存)
 echo -n "enter ${CLNT}.p12 pass : "
